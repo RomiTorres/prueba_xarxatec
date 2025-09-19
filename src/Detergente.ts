@@ -1,11 +1,16 @@
-export class Detergente {
+import { IDescuento } from "./IDescuento.js";
+import { ILiquido } from "./ILiquido.js";
+
+export class Detergente implements ILiquido, IDescuento {
   #marca: string;
   #precio: number;
-  descuento: number;
+  #volumen: number;
+  #tipoEnvase: string;
+  #descuento: number;
 
-  constructor(marca:string, precio:number) {
-    this.#marca = marca;
-    this.#precio = precio;
+  constructor(nuevaMarca: string, nuevoPrecio: number) {
+    this.#marca = nuevaMarca;
+    this.#precio = nuevoPrecio;
   }
 
   get marca(): string {
@@ -16,12 +21,43 @@ export class Detergente {
     return this.#precio;
   }
 
-  set marca(marca:string) {
-     this.#marca = marca;
+  set marca(nuevaMarca: string) {
+    this.#marca = nuevaMarca;
   }
 
-  set precio(precio:number) {
-    this.#precio = precio;
+  set precio(nuevoPrecio: number) {
+    this.#precio = nuevoPrecio;
   }
 
+  setVolumen(nuevoVolumen: number): void {
+    this.#volumen = nuevoVolumen;
+  }
+
+  getVolumen(): number {
+    return this.#volumen;
+  }
+
+  setTipoEnvase(tipo: string): void {
+    this.#tipoEnvase = tipo;
+  }
+  getTipoEnvase(): string {
+    return this.#tipoEnvase;
+  }
+
+  setDescuento(descuento: number): void {
+    this.#descuento = descuento;
+  }
+  
+  getDescuento(): number {
+    return this.#descuento;
+  }
+
+  getPrecioDescuento(): number {
+    return this.#precio *(1-this.#descuento)
+  }
+
+  toString(): string {
+    return (`Marca: ${this.#marca}\n Precio: ${this.#precio}\n Volumen: ${this.#volumen}\n Tipo Envase: ${this.#tipoEnvase}\n Descuento: ${this.#descuento}`);
+    
+  }
 }
