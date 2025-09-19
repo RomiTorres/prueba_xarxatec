@@ -53,11 +53,11 @@ export class Detergente implements ILiquido, IDescuento {
   }
 
   getPrecioDescuento(): number {
-    return this.#precio *(1-this.#descuento)
+    return parseFloat((this.#precio *(1-this.#descuento)).toFixed(2))
   }
 
   toString(): string {
     return (`Marca: ${this.#marca}\n Precio: ${this.#precio}\n Volumen: ${this.#volumen}\n Tipo Envase: ${this.#tipoEnvase}\n Descuento: ${this.#descuento}`);
-    
+
   }
 }
